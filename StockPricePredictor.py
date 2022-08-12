@@ -18,7 +18,7 @@ import streamlit as st
 
 def getData(ticker):
     plt.rcdefaults()
-    plt.rcParams.update({'figure.facecolor':"#2c4d56"})
+    plt.rcParams.update({'figure.facecolor': "#2c4d56"})
     tk = yf.Ticker(ticker)
     print(tk.info)
     # need try catch
@@ -72,8 +72,7 @@ def getData(ticker):
     scores = [lr_confidence, rg_confidence, rf_confidence, svr_confidence]
     alg_vs_score = pd.DataFrame([[x, y] for x, y in zip(names, scores)], columns=columns)
 
-    alg_vs_score.plot(kind='bar', x='Model', y='Accuracy', color=['blue', 'red', 'yellow', 'orange'])
-
+    alg_vs_score.plot(kind='bar', x='Model', y='Accuracy', color=['#008080', '#5F8575', '#5F9EA0', '#002b36'])
 
     with st.container():
         fig_col1, fig_col2 = st.columns(2)
@@ -127,6 +126,7 @@ def getData(ticker):
 
     "#586e75"
 
+
 def run():
     st.set_page_config(
         page_title="Real-Time Stock Forecast Dashboard",
@@ -135,20 +135,18 @@ def run():
         initial_sidebar_state="expanded"
     )
 
-
     with st.sidebar:
         st.title("Real-time Stock Forecasting Dashboard")
         st.write("Welcome. This program gives a 2 month forecast of a stock using a time series"
-             " of it's historical close data from 2018 to the current date. \n "
-             "It compares several machine learning models to make the most accurate forecast.\n")
+                 " of it's historical close data from 2018 to the current date. \n "
+                 "It compares several machine learning models to make the most accurate forecast.\n")
         with st.form(key='my_form'):
             ticker = st.text_input(label="Enter stock ticker to continue: ")
             submit_button = st.form_submit_button(label='Submit')
     getData(ticker)
 
 
-
 if __name__ == "__main__":
     run()
 
-#twitter sentiment / fibonacci lines on charts
+# twitter sentiment / fibonacci lines on charts
